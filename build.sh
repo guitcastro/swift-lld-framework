@@ -12,5 +12,5 @@ cd buid
 brew install ninja
 cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS='lld' -DCMAKE_INSTALL_PREFIX=./install ../llvm
 
-make lld
-make install
+ninja lld
+ninja install
