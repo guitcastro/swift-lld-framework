@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 curl -sL https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-19.1.3.zip -o llvm-project.zip
-unzip llvm-project.zip
+unzip llvm-project.zip -q
 
 cd llvm-project-llvmorg-19.1.3/
 
