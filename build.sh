@@ -24,5 +24,5 @@ cmake -G Ninja \
   -DLLVM_ROOT=$(brew --prefix llvm@18) 
 
 
-ninja lld
-ninja install
+ninja -C build lld
+ninja -C build install
