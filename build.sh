@@ -7,14 +7,12 @@ brew install ninja
 curl -sL https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-$LLVM_VERSION.zip -o llvm-project.zip
 unzip -q llvm-project.zip 
 
-cd llvm-project-llvmorg-$LLVM_VERSION/
 mkdir build
 mkdir install
-cd build  
-
 
 cmake -G Ninja \
-  -S ../lld \
+  -B llvm-project-llvmorg-$LLVM_VERSION/build \
+  -S llvm-project-llvmorg-$LLVM_VERSION/lld \
   -DCMAKE_BUILD_TYPE=Release \
   -DLLVM_ENABLE_PROJECTS='lld' \
   -DCMAKE_INSTALL_PREFIX=./install  \
