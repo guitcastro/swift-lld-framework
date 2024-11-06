@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+brew install ninja
+
 curl -sL https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-19.1.3.zip -o llvm-project.zip
 unzip -q llvm-project.zip 
 
@@ -8,10 +10,11 @@ cd llvm-project-llvmorg-19.1.3/
 mkdir buid
 mkdir install
 
-brew install ninja
+cd build  
+
+
 cmake -G Ninja \
   -S ./lld \
-  -B ./build \
   -DCMAKE_BUILD_TYPE=Release \
   -DLLVM_ENABLE_PROJECTS='lld' \
   -DCMAKE_INSTALL_PREFIX=./install  \
@@ -22,7 +25,6 @@ cmake -G Ninja \
   -DSPHINX_OUTPUT_MAN=0 \
   -DLLVM_ROOT=$(brew --prefix llvm@18) 
 
-cd build  
 
 ninja lld
 ninja install
