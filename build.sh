@@ -10,7 +10,15 @@ mkdir install
 cd buid
 
 brew install ninja
-cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS='lld' -DCMAKE_INSTALL_PREFIX=./install  -DLLVM_ROOT=$(brew --prefix llvm@18) ../llvm
+cmake -G Ninja \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DLLVM_ENABLE_PROJECTS='lld'v\
+  -DCMAKE_INSTALL_PREFIX=./install  \
+  -DLLVM_INCLUDE_BENCHMARKS=0 \
+  -DLLVM_INCLUDE_EXAMPLES=0  \
+  -DLLVM_INCLUDE_TESTS=0 \
+  -DLLVM_ROOT=$(brew --prefix llvm@18) \
+  ../llvm
 
 ninja lld
 ninja install
