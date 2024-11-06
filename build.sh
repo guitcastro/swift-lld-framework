@@ -10,6 +10,7 @@ unzip -q llvm-project.zip
 mkdir build
 mkdir install
 
+
 cmake -G Ninja \
   -B llvm-project-llvmorg-$LLVM_VERSION/build \
   -S llvm-project-llvmorg-$LLVM_VERSION/lld \
@@ -23,6 +24,6 @@ cmake -G Ninja \
   -DSPHINX_OUTPUT_MAN=0 \
   -DLLVM_ROOT=$(brew --prefix llvm@18) 
 
-
-ninja -C build lld
-ninja -C build install
+cd build
+ninja lld
+ninja install
