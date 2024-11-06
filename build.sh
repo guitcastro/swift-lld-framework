@@ -25,3 +25,13 @@ cmake -G Ninja \
 
 ninja lld
 ninja install
+
+xcodebuild -create-xcframework \
+    -headers ../install/include \
+    -library ../install/lib/liblldCOFF.a \
+    -library ../install/lib/liblldELF.a \
+    -library ../install/lib/liblldMachO.a \
+    -library ../install/lib/liblldMinGW.a \
+    -library ../install/lib/liblldWasm.a \
+    -output xcframeworks/LLD.xcframework
+    
