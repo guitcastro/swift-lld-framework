@@ -11,6 +11,7 @@ cd buid
 
 brew install ninja
 cmake -G Ninja \
+  -B ../lld \
   -DCMAKE_BUILD_TYPE=Release \
   -DLLVM_ENABLE_PROJECTS='lld' \
   -DCMAKE_INSTALL_PREFIX=./install  \
