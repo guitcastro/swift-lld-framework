@@ -12,7 +12,7 @@ mkdir install
 cd build
 
 cmake -G Ninja \
-  -S ../lld \
+  -S ../llvm-project-llvmorg-$LLVM_VERSION/lld \
   -DCMAKE_BUILD_TYPE=Release \
   -DLLVM_ENABLE_PROJECTS='lld' \
   -DCMAKE_INSTALL_PREFIX=../install  \
