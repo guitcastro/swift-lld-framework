@@ -17,6 +17,8 @@ cmake -G Ninja \
   -DLLVM_INCLUDE_BENCHMARKS=0 \
   -DLLVM_INCLUDE_EXAMPLES=0  \
   -DLLVM_INCLUDE_TESTS=0 \
+  -DSPHINX_OUTPUT_HTML=0 \
+  -DSPHINX_OUTPUT_MAN=0 \
   -DLLVM_ROOT=$(brew --prefix llvm@18) \
   ../llvm
 
