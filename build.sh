@@ -26,10 +26,10 @@ cmake -G Ninja \
 ninja lld
 ninja install
 
-mkdir -p /outputs/macos-intel/
+mkdir -p ../dist/macos-intel/
 
-xcodebuild -create-xcframework -library ../install/lib/liblldCOFF.a -headers ../install/include -output  /output/macos-intel/xcframeworks/liblldCOFF.xcframework   
-xcodebuild -create-xcframework -library ../install/lib/liblldELF.a -headers ../install/include -output  /output/macos-intel/xcframeworks/liblldELF.xcframework   
-xcodebuild -create-xcframework -library ../install/lib/liblldMachO.a -headers ../install/include -output  /output/macos-intel/xcframeworks/liblldMachO.xcframework   
-xcodebuild -create-xcframework -library ../install/lib/liblldMinGW.a -headers ../install/include -output  /output/macos-intel/xcframeworks/liblldMinGW.xcframework   
-xcodebuild -create-xcframework -library ../install/lib/liblldWasm.a -headers ../install/include -output  /output/macos-intel/xcframeworks/liblldCliblldWasmOFF.xcframework   
+xcodebuild -create-xcframework -library ../install/lib/liblldCOFF.a -headers ../install/include -output  ../dist/macos-intel/xcframeworks/liblldCOFF.xcframework   
+xcodebuild -create-xcframework -library ../install/lib/liblldELF.a -headers ../install/include -output  ../dist/macos-intel/xcframeworks/liblldELF.xcframework   
+xcodebuild -create-xcframework -library ../install/lib/liblldMachO.a -headers ../install/include -output  ../dist/macos-intel/xcframeworks/liblldMachO.xcframework   
+xcodebuild -create-xcframework -library ../install/lib/liblldMinGW.a -headers ../install/include -output  ../dist/macos-intel/xcframeworks/liblldMinGW.xcframework   
+xcodebuild -create-xcframework -library ../install/lib/liblldWasm.a -headers ../install/include -output  ../dist/macos-intel/xcframeworks/liblldCliblldWasmOFF.xcframework   
