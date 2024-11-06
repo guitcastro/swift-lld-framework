@@ -7,7 +7,7 @@ cd llvm-project-llvmorg-19.1.3/
 
 mkdir buid
 mkdir install
-cd buid
+cd lld
 
 brew install ninja
 cmake -G Ninja \
