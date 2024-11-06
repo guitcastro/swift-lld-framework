@@ -26,7 +26,7 @@ cmake -G Ninja \
 ninja lld
 ninja install
 
-mkdir /output/macos-intel/
+mkdir -p /outputs/macos-intel/
 
 xcodebuild -create-xcframework -library ../install/lib/liblldCOFF.a -headers ../install/include -output  /output/macos-intel/xcframeworks/liblldCOFF.xcframework   
 xcodebuild -create-xcframework -library ../install/lib/liblldELF.a -headers ../install/include -output  /output/macos-intel/xcframeworks/liblldELF.xcframework   
