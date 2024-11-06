@@ -7,11 +7,11 @@ cd llvm-project-llvmorg-19.1.3/
 
 mkdir buid
 mkdir install
-cd build
 
 brew install ninja
 cmake -G Ninja \
-  -S ../lld
+  -S ./lld \
+  -B ./build \
   -DCMAKE_BUILD_TYPE=Release \
   -DLLVM_ENABLE_PROJECTS='lld' \
   -DCMAKE_INSTALL_PREFIX=./install  \
