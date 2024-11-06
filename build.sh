@@ -26,11 +26,10 @@ cmake -G Ninja \
 ninja lld
 ninja install
 
- libtool -static -o libLLD.a \
-     ../install/lib/liblldCOFF.a \
-     ../install/lib/liblldELF.a \
-     ../install/lib/liblldMachO.a \
-     ../install/lib/liblldMinGW.a \
-     ../install/lib/liblldWasm.a
+mkdir /output/macos-intel/
 
-xcodebuild -create-xcframework -library libLLD.a  -headers ../install/include -output xcframeworks/LLD.xcframework
+xcodebuild -create-xcframework -library ../install/lib/liblldCOFF.a -headers ../install/include -output  /output/macos-intel/xcframeworks/liblldCOFF.xcframework   
+xcodebuild -create-xcframework -library ../install/lib/liblldELF.a -headers ../install/include -output  /output/macos-intel/xcframeworks/liblldELF.xcframework   
+xcodebuild -create-xcframework -library ../install/lib/liblldMachO.a -headers ../install/include -output  /output/macos-intel/xcframeworks/liblldMachO.xcframework   
+xcodebuild -create-xcframework -library ../install/lib/liblldMinGW.a -headers ../install/include -output  /output/macos-intel/xcframeworks/liblldMinGW.xcframework   
+xcodebuild -create-xcframework -library ../install/lib/liblldWasm.a -headers ../install/include -output  /output/macos-intel/xcframeworks/liblldCliblldWasmOFF.xcframework   
