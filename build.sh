@@ -7,7 +7,7 @@ unzip -q llvm-project.zip
 
 cd llvm-project-llvmorg-19.1.3/
 
-mkdir buid
+mkdir build
 mkdir install
 
 cd build  
