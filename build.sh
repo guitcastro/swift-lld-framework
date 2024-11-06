@@ -19,8 +19,7 @@ cmake -G Ninja \
   -DLLVM_INCLUDE_TESTS=0 \
   -DSPHINX_OUTPUT_HTML=0 \
   -DSPHINX_OUTPUT_MAN=0 \
-  -DLLVM_ROOT=$(brew --prefix llvm@18) \
-  ../llvm
+  -DLLVM_ROOT=$(brew --prefix llvm@18) 
 
 ninja lld
 ninja install
