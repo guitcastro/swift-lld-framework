@@ -33,4 +33,4 @@ ninja install
      ../install/lib/liblldMinGW.a \
      ../install/lib/liblldWasm.a
 
-xcodebuild -create-xcframework -library libLLD.a  -headers ../install/include 
+xcodebuild -create-xcframework -library libLLD.a  -headers ../install/include -output xcframeworks/LLD.xcframework
