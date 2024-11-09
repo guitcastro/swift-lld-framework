@@ -2,6 +2,7 @@
 
 LLVM_VERSION='19.1.3'
 
+brew install ninja
 
 arch -x86_64  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 arch -x86_64 /usr/local/bin/brew install zstd    
