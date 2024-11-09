@@ -14,11 +14,11 @@ curl -sL https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-$LLVM_VE
 echo 'Unziping LLVM source code'
 unzip -q llvm-project.zip 
 
-echo 'Downloading LLVM x86 binaries'
-curl -sL https://github.com/llvm/llvm-project/releases/download/llvmorg-$LLVM_VERSION/$LLVM_VERSION-macOS-X64.tar.xz -o llvm.tar.gz
+echo 'Downloading LLVM x86 binaries'         
+curl -sL https://github.com/llvm/llvm-project/releases/download/llvmorg-$LLVM_VERSION/LLVM-$LLVM_VERSION-macOS-X64.tar.xz -o llvm.tar.gz
 
 echo 'Extracting LLVM x86 binaries'
-tar -xf llvm.tar.gz
+tar -xvf llvm.tar.gz
 
 echo 'Installing Ninja ...'
 brew install ninja
