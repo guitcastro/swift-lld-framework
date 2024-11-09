@@ -22,4 +22,9 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: ${{ github.workspace }}/dist
+          files: |
+            ${{ github.workspace }}/dist/macos/liblldCliblldWasmOFF.xcframework
+            ${{ github.workspace }}/dist/macos/liblldCOFF.xcframework
+            ${{ github.workspace }}/dist/macos/liblldELF.xcframework
+            ${{ github.workspace }}/dist/macos/liblldMachO.xcframework
+            ${{ github.workspace }}/dist/macos/liblldMinGW.xcframework
