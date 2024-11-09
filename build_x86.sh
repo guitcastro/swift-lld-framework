@@ -21,7 +21,7 @@ echo 'Extracting LLVM x86 binaries'
 tar -xvf llvm.tar.gz
 
 echo 'Installing Ninja ...'
-brew install ninja
+arch -x86_64 /usr/local/bin/brew install ninja
 
 LLVM_ROOT=$(pwd)/LLVM-$LLVM_VERSION-macOS-X64/
 
