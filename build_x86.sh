@@ -23,7 +23,7 @@ tar -xvf llvm.tar.gz
 echo 'Installing Ninja ...'
 brew install ninja
 
-LLVM_ROOT=./LLVM-$LLVM_VERSION-macOS-X64/
+LLVM_ROOT=$(pwd)/LLVM-$LLVM_VERSION-macOS-X64/
 
 mkdir build
 mkdir install
