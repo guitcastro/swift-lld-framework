@@ -2,16 +2,27 @@
 
 LLVM_VERSION='19.1.3'
 
-brew install ninja
-
+echo 'Installing homebrew x86 ...'
 arch -x86_64  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+echo 'Installing zstd x86 ...'
 arch -x86_64 /usr/local/bin/brew install zstd    
 
+echo 'Downloading LLVM source code'
 curl -sL https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-$LLVM_VERSION.zip -o llvm-project.zip
+
+echo 'Unziping LLVM source code'
 unzip -q llvm-project.zip 
 
+echo 'Downloading LLVM x86 binaries'
 curl -sL https://github.com/llvm/llvm-project/releases/download/llvmorg-$LLVM_VERSION/$LLVM_VERSION-macOS-X64.tar.xz -o llvm.tar.gz
+
+echo 'Extracting LLVM x86 binaries'
 tar -xf llvm.tar.gz
+
+echo 'Installing Ninja ...'
+brew install ninja
+
 LLVM_ROOT=LLVM-$LLVM_VERSION-macOS-X64/
 
 mkdir build
