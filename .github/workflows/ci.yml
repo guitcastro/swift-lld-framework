@@ -24,9 +24,9 @@ jobs:
             # A file, directory or wildcard pattern that describes what to upload
           path: ${{ github.workspace }}/dist                             
       - name: Release
-        uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2        
         with:
+          tag_name: v18.1.8
           files: |
             dist/macos/liblldCliblldWasmOFF.xcframework
             dist/macos/liblldCOFF.xcframework
