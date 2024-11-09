@@ -1,31 +1,40 @@
 #!/usr/bin/env bash
 
-LLVM_VERSION='18.1.8'
+LLVM_VERSION='19.1.3'
 
 
 arch -x86_64  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-arch -x86_64 /usr/local/bin/brew install llvm@18
-arch -x86_64 /usr/local/bin/brew install ninja
+arch -x86_64 /usr/local/bin/brew arch brew install zstd    
 
 curl -sL https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-$LLVM_VERSION.zip -o llvm-project.zip
 unzip -q llvm-project.zip 
+
+curl -sL https://github.com/llvm/llvm-project/releases/download/llvmorg-$LLVM_VERSION/$LLVM_VERSION-macOS-X64.tar.xz -o llvm.tar.gz
+tar -xf llvm.tar.gz
+LLVM_ROOT=LLVM-$LLVM_VERSION-macOS-X64/
 
 mkdir build
 mkdir install
 cd build
 
-cmake -G Ninja \
-  -S ../llvm-project-llvmorg-$LLVM_VERSION/lld \
+cmake -G Ninja -S ../llvm-project-llvmorg-$LLVM_VERSION/lld \
+  -DCMAKE_SYSTEM_NAME=Darwin \
+  -DLLVM_ROOT=${LLVM_ROOT} \
+  -DLLVM_NATIVE_TOOL_DIR=${LLVM_ROOT}/bin/ \
   -DCMAKE_BUILD_TYPE=Release \
   -DLLVM_ENABLE_PROJECTS='lld' \
-  -DCMAKE_INSTALL_PREFIX=../install  \
+  -DCMAKE_INSTALL_PREFIX=./install  \
   -DLLVM_INCLUDE_BENCHMARKS=0 \
   -DLLVM_INCLUDE_EXAMPLES=0  \
   -DLLVM_INCLUDE_TESTS=0 \
   -DSPHINX_OUTPUT_HTML=0 \
   -DSPHINX_OUTPUT_MAN=0 \
-  -DLLVM_ROOT=$(brew --prefix llvm@18) 
+  -DCMAKE_CXX_FLAGS='-arch x86_64 -target x86_64-apple-darwin-macho' \
+  -DLLVM_HOST_TRIPLE=x86_64-apple-darwin-macho \
+  -DCMAKE_C_COMPILER=${LLVM_ROOT}/bin/clang \
+  -DCMAKE_CXX_COMPILER=${LLVM_ROOT}/bin/clang++ \
+  -DLLVM_TARGETS_TO_BUILD=X86
+
 
 ninja lld
 ninja install

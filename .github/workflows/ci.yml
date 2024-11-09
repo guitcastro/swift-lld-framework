@@ -11,7 +11,7 @@ jobs:
       - name: build
         run: |
           cd ${{ github.workspace }}
-          sh build.sh
+          sh build_x86.sh
       - name: Test
         run: |
           ls dist/macos
@@ -27,8 +27,8 @@ jobs:
         with:
           tag_name: v18.1.8
           files: |
-            dist/macos/liblldCliblldWasmOFF.xcframework
-            dist/macos/liblldCOFF.xcframework
-            dist/macos/liblldELF.xcframework
-            dist/macos/liblldMachO.xcframework
-            dist/macos/liblldMinGW.xcframework
+            ${{ github.workspace }}/dist/macos/liblldCliblldWasmOFF.xcframework
+            ${{ github.workspace }}/dist/macos/liblldCOFF.xcframework
+            ${{ github.workspace }}/dist/macos/liblldELF.xcframework
+            ${{ github.workspace }}/dist/macos/liblldMachO.xcframework
+            ${{ github.workspace }}/dist/macos/liblldMinGW.xcframework
