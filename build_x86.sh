@@ -4,7 +4,7 @@ LLVM_VERSION='19.1.3'
 
 
 arch -x86_64  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-arch -x86_64 /usr/local/bin/brew arch brew install zstd    
+arch -x86_64 /usr/local/bin/brew install zstd    
 
 curl -sL https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-$LLVM_VERSION.zip -o llvm-project.zip
 unzip -q llvm-project.zip 
