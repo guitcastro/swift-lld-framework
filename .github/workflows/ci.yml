@@ -34,36 +34,38 @@ jobs:
             # A file, directory or wildcard pattern that describes what to upload
           path: ${{ github.workspace }}/dist  
   create-release:
+    runs-on: macos-15
     needs: [macos-arm, macos-x86]     
-    - name: Download packages
-        uses: actions/download-artifact@v3
-    - name: Test
-      run: |
-        ls 
-        pwd 
-        xcodebuild -create-xcframework -archive lld-macos-arm/liblldWasm.xcframework -framework lld-macos-x86/liblldWasm.xcframework -output liblldWasm.xcframework
-        xcodebuild -create-xcframework -archive lld-macos-arm/liblldCOFF.xcframework -framework lld-macos-x86/liblldCOFF.xcframework -output liblldCOFF.xcframework
-        xcodebuild -create-xcframework -archive lld-macos-arm/liblldMachO.xcframework -framework lld-macos-x86/liblldMachO.xcframework -output liblldMachO.xcframework
-        xcodebuild -create-xcframework -archive lld-macos-arm/liblldELF.xcframework -framework lld-macos-x86/liblldELF.xcframework -output liblldELF.xcframework
-        xcodebuild -create-xcframework -archive lld-macos-arm/liblldMinGW.xcframework -framework lld-macos-x86/liblldMinGW.xcframework -output liblldMinGW.xcframework
-        zip -r liblldWasm.zip liblldWasm.xcframework
-        zip -r liblldCOFF.zip liblldCOFF.xcframework
-        zip -r liblldMachO.zip liblldMachO.xcframework
-        zip -r liblldELF.zip liblldELF.xcframework
-        zip -r liblldMinGW.zip liblldMinGW.xcframework
-    - name: Test
-      run: |
-        ls 
-        pwd 
-        zip file.zip file         
-    - name: Release        
-      uses: softprops/action-gh-release@v2        
-      with:
-        tag_name: v18.1.8
-        files: |
-          ${{ github.workspace }}/liblldWasm.zip
-          ${{ github.workspace }}/liblldCOFF.zip
-          ${{ github.workspace }}/liblldMachO.zip
-          ${{ github.workspace }}/liblldELF.zip
-          ${{ github.workspace }}/liblldMinGW.zip
-          
+    steps:
+      - name: Download packages
+          uses: actions/download-artifact@v3
+      - name: Test
+        run: |
+          ls 
+          pwd 
+          xcodebuild -create-xcframework -archive lld-macos-arm/liblldWasm.xcframework -framework lld-macos-x86/liblldWasm.xcframework -output liblldWasm.xcframework
+          xcodebuild -create-xcframework -archive lld-macos-arm/liblldCOFF.xcframework -framework lld-macos-x86/liblldCOFF.xcframework -output liblldCOFF.xcframework
+          xcodebuild -create-xcframework -archive lld-macos-arm/liblldMachO.xcframework -framework lld-macos-x86/liblldMachO.xcframework -output liblldMachO.xcframework
+          xcodebuild -create-xcframework -archive lld-macos-arm/liblldELF.xcframework -framework lld-macos-x86/liblldELF.xcframework -output liblldELF.xcframework
+          xcodebuild -create-xcframework -archive lld-macos-arm/liblldMinGW.xcframework -framework lld-macos-x86/liblldMinGW.xcframework -output liblldMinGW.xcframework
+          zip -r liblldWasm.zip liblldWasm.xcframework
+          zip -r liblldCOFF.zip liblldCOFF.xcframework
+          zip -r liblldMachO.zip liblldMachO.xcframework
+          zip -r liblldELF.zip liblldELF.xcframework
+          zip -r liblldMinGW.zip liblldMinGW.xcframework
+      - name: Test
+        run: |
+          ls 
+          pwd 
+          zip file.zip file         
+      - name: Release        
+        uses: softprops/action-gh-release@v2        
+        with:
+          tag_name: v18.1.8
+          files: |
+            ${{ github.workspace }}/liblldWasm.zip
+            ${{ github.workspace }}/liblldCOFF.zip
+            ${{ github.workspace }}/liblldMachO.zip
+            ${{ github.workspace }}/liblldELF.zip
+            ${{ github.workspace }}/liblldMinGW.zip
+            
