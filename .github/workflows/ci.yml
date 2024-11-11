@@ -8,14 +8,18 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: build
+      - name: build-x86
         run: |
           cd ${{ github.workspace }}
           sh build_x86.sh
+      - name: build-arm
+        run: |
+          cd ${{ github.workspace }}
+          sh build.sh          
       - name: Test
         run: |
           ls dist/macos
-          pwd dist/macos
+          pwd dist/macos-x86
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.4.3
         with:
@@ -27,8 +31,12 @@ jobs:
         with:
           tag_name: v18.1.8
           files: |
-            ${{ github.workspace }}/dist/macos/liblldCliblldWasmOFF.xcframework
+            ${{ github.workspace }}/dist/macos/liblldWasm.xcframework
             ${{ github.workspace }}/dist/macos/liblldCOFF.xcframework
             ${{ github.workspace }}/dist/macos/liblldELF.xcframework
             ${{ github.workspace }}/dist/macos/liblldMachO.xcframework
             ${{ github.workspace }}/dist/macos/liblldMinGW.xcframework
+            ${{ github.workspace }}/dist/macos-x86/liblldWasm.xcframework
+            ${{ github.workspace }}/dist/macos-x86/liblldCOFF.xcframework
+            ${{ github.workspace }}/dist/macos-x86/liblldELF.xcframework
+            ${{ github.workspace }}/dist/macos-x86/liblldMachO.xcframework

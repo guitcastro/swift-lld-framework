@@ -32,4 +32,4 @@ xcodebuild -create-xcframework -library ../install/lib/liblldCOFF.a -headers ../
 xcodebuild -create-xcframework -library ../install/lib/liblldELF.a -headers ../install/include -output  ../dist/macos/liblldELF.xcframework   
 xcodebuild -create-xcframework -library ../install/lib/liblldMachO.a -headers ../install/include -output  ../dist/macos/liblldMachO.xcframework   
 xcodebuild -create-xcframework -library ../install/lib/liblldMinGW.a -headers ../install/include -output  ../dist/macos/liblldMinGW.xcframework   
-xcodebuild -create-xcframework -library ../install/lib/liblldWasm.a -headers ../install/include -output  ../dist/macos/liblldCliblldWasmOFF.xcframework   
+xcodebuild -create-xcframework -library ../install/lib/liblldWasm.a -headers ../install/include -output  ../dist/macos/liblldWasm.xcframework   
