@@ -14,7 +14,7 @@ jobs:
           sh build_x86.sh      
       - name: Test
         run: |
-          ls dist/macos
+          ls dist/macos-x86
           pwd dist/macos-x86
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.4.3
@@ -35,7 +35,7 @@ jobs:
       - name: Test
         run: |
           ls dist/macos
-          pwd dist/macos-x86
+          pwd dist/macos
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.4.3
         with:
