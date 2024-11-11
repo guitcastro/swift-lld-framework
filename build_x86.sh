@@ -49,10 +49,10 @@ cmake -G Ninja -S ../llvm-project-llvmorg-$LLVM_VERSION/lld \
 ninja lldCOFF lldELF lldMachO lldMinGW lldWasm
 ninja install
 
-mkdir -p ../dist/macos-x86/
+mkdir -p ../dist/
 
-xcodebuild -create-xcframework -library ./lib/liblldCOFF.a -headers ../llvm-project-llvmorg-$LLVM_VERSION/lld/include -output  ../dist/macos-x86/liblldCOFF.xcframework   
-xcodebuild -create-xcframework -library ./lib/liblldELF.a -headers ../llvm-project-llvmorg-$LLVM_VERSION/lld/include -output  ../dist/macos-x86/liblldELF.xcframework   
-xcodebuild -create-xcframework -library ./lib/liblldMachO.a -headers ../llvm-project-llvmorg-$LLVM_VERSION/lld/include -output  ../dist/macos-x86/liblldMachO.xcframework   
-xcodebuild -create-xcframework -library ./lib/liblldMinGW.a -headers ../llvm-project-llvmorg-$LLVM_VERSION/lld/include -output  ../dist/macos-x86/liblldMinGW.xcframework   
-xcodebuild -create-xcframework -library ./lib/liblldWasm.a -headers ../llvm-project-llvmorg-$LLVM_VERSION/lld/include -output  ../dist/macos-x86/liblldCliblldWasmOFF.xcframework   
+xcodebuild -create-xcframework -library ./lib/liblldCOFF.a -headers ../llvm-project-llvmorg-$LLVM_VERSION/lld/include -output  ../dist/liblldCOFF.xcframework   
+xcodebuild -create-xcframework -library ./lib/liblldELF.a -headers ../llvm-project-llvmorg-$LLVM_VERSION/lld/include -output  ../dist/liblldELF.xcframework   
+xcodebuild -create-xcframework -library ./lib/liblldMachO.a -headers ../llvm-project-llvmorg-$LLVM_VERSION/lld/include -output  ../dist/liblldMachO.xcframework   
+xcodebuild -create-xcframework -library ./lib/liblldMinGW.a -headers ../llvm-project-llvmorg-$LLVM_VERSION/lld/include -output  ../dist/liblldMinGW.xcframework   
+xcodebuild -create-xcframework -library ./lib/liblldWasm.a -headers ../llvm-project-llvmorg-$LLVM_VERSION/lld/include -output  ../dist/liblldCliblldWasmOFF.xcframework   
