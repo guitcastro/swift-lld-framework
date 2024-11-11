@@ -32,10 +32,10 @@ cd build
 cmake -G Ninja -S ../llvm-project-llvmorg-$LLVM_VERSION/lld \
   -DCMAKE_SYSTEM_NAME=Darwin \
   -DLLVM_ROOT=${LLVM_ROOT} \
-  -DLLVM_NATIVE_TOOL_DIR=${LLVM_ROOT}/bin/ \
   -DCMAKE_BUILD_TYPE=Release \
   -DLLVM_ENABLE_PROJECTS='lld' \
   -DCMAKE_INSTALL_PREFIX=./install  \
+  -DDEFAULT_SYSROOT=`xcrun --show-sdk-path`  \
   -DLLVM_INCLUDE_BENCHMARKS=0 \
   -DLLVM_INCLUDE_EXAMPLES=0  \
   -DLLVM_INCLUDE_TESTS=0 \
@@ -43,18 +43,16 @@ cmake -G Ninja -S ../llvm-project-llvmorg-$LLVM_VERSION/lld \
   -DSPHINX_OUTPUT_MAN=0 \
   -DCMAKE_CXX_FLAGS='-arch x86_64 -target x86_64-apple-darwin-macho' \
   -DLLVM_HOST_TRIPLE=x86_64-apple-darwin-macho \
-  -DCMAKE_C_COMPILER=${LLVM_ROOT}/bin/clang \
-  -DCMAKE_CXX_COMPILER=${LLVM_ROOT}/bin/clang++ \
   -DLLVM_TARGETS_TO_BUILD=X86
 
 
-ninja lld
+ninja lldCOFF lldELF lldMachO lldMinGW lldWasm
 ninja install
 
 mkdir -p ../dist/macos/
 
-xcodebuild -create-xcframework -library ../install/lib/liblldCOFF.a -headers ../install/include -output  ../dist/macos/liblldCOFF.xcframework   
-xcodebuild -create-xcframework -library ../install/lib/liblldELF.a -headers ../install/include -output  ../dist/macos/liblldELF.xcframework   
-xcodebuild -create-xcframework -library ../install/lib/liblldMachO.a -headers ../install/include -output  ../dist/macos/liblldMachO.xcframework   
-xcodebuild -create-xcframework -library ../install/lib/liblldMinGW.a -headers ../install/include -output  ../dist/macos/liblldMinGW.xcframework   
-xcodebuild -create-xcframework -library ../install/lib/liblldWasm.a -headers ../install/include -output  ../dist/macos/liblldCliblldWasmOFF.xcframework   
+xcodebuild -create-xcframework -library ./lib/liblldCOFF.a -headers ../llvm-project-llvmorg-$LLVM_VERSION/lld/include -output  ../dist/macos/liblldCOFF.xcframework   
+xcodebuild -create-xcframework -library ./lib/liblldELF.a -headers ../llvm-project-llvmorg-$LLVM_VERSION/lld/include -output  ../dist/macos/liblldELF.xcframework   
+xcodebuild -create-xcframework -library ./lib/liblldMachO.a -headers ../llvm-project-llvmorg-$LLVM_VERSION/lld/include -output  ../dist/macos/liblldMachO.xcframework   
+xcodebuild -create-xcframework -library ./lib/liblldMinGW.a -headers ../llvm-project-llvmorg-$LLVM_VERSION/lld/include -output  ../dist/macos/liblldMinGW.xcframework   
+xcodebuild -create-xcframework -library ./lib/liblldWasm.a -headers ../llvm-project-llvmorg-$LLVM_VERSION/lld/include -output  ../dist/macos/liblldCliblldWasmOFF.xcframework   
