@@ -38,7 +38,7 @@ jobs:
     needs: [macos-arm, macos-x86]     
     steps:
       - name: Download packages
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
       - name: Test
         run: |
           ls 
