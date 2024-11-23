@@ -47,7 +47,6 @@ cmake -G Ninja -S ../llvm-project-llvmorg-$LLVM_VERSION/lld \
 
 
 ninja lldCOFF lldELF lldMachO lldMinGW lldWasm
-ninja install
 
 mkdir -p ../dist/
 
