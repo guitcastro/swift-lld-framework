@@ -17,7 +17,7 @@ jobs:
         with:
           name: lld-macos-x86
             # A file, directory or wildcard pattern that describes what to upload
-          path: ${{ github.workspace }}/dist  
+          path: ${{ github.workspace }}/install  
   macos-arm:
     runs-on: macos-15
     steps:
@@ -32,27 +32,28 @@ jobs:
         with:
           name: lld-macos-arm
             # A file, directory or wildcard pattern that describes what to upload
-          path: ${{ github.workspace }}/dist  
+          path: ${{ github.workspace }}/install  
   create-release:
     runs-on: macos-15
     needs: [macos-arm, macos-x86]     
     steps:
       - name: Download packages
         uses: actions/download-artifact@v4
-      - name: Test
+      - name: Merge Frameworks
         run: |
-          ls 
-          pwd 
-          xcodebuild -create-xcframework -archive lld-macos-arm/liblldWasm.xcframework -framework lld-macos-x86/liblldWasm.xcframework -output liblldWasm.xcframework
-          xcodebuild -create-xcframework -archive lld-macos-arm/liblldCOFF.xcframework -framework lld-macos-x86/liblldCOFF.xcframework -output liblldCOFF.xcframework
-          xcodebuild -create-xcframework -archive lld-macos-arm/liblldMachO.xcframework -framework lld-macos-x86/liblldMachO.xcframework -output liblldMachO.xcframework
-          xcodebuild -create-xcframework -archive lld-macos-arm/liblldELF.xcframework -framework lld-macos-x86/liblldELF.xcframework -output liblldELF.xcframework
-          xcodebuild -create-xcframework -archive lld-macos-arm/liblldMinGW.xcframework -framework lld-macos-x86/liblldMinGW.xcframework -output liblldMinGW.xcframework
-          zip -r liblldWasm.zip liblldWasm.xcframework
-          zip -r liblldCOFF.zip liblldCOFF.xcframework
-          zip -r liblldMachO.zip liblldMachO.xcframework
-          zip -r liblldELF.zip liblldELF.xcframework
-          zip -r liblldMinGW.zip liblldMinGW.xcframework
+          ls -l lld-macos-arm/
+          ls -l lld-macos-x86/
+
+          xcodebuild -create-xcframework -archive lld-macos-arm/liblldWasm.xcframework -archive lld-macos-x86/liblldWasm.xcframework -framework LldWasm.framework
+          xcodebuild -create-xcframework -archive lld-macos-arm/liblldCOFF.xcframework -archive lld-macos-x86/liblldCOFF.xcframework -framework LldCOFF.framework
+          xcodebuild -create-xcframework -archive lld-macos-arm/liblldMachO.xcframework -archive lld-macos-x86/liblldMachO.xcframework -framework LldMachO.framework
+          xcodebuild -create-xcframework -archive lld-macos-arm/liblldELF.xcframework -archive lld-macos-x86/liblldELF.xcframework -framework LldELF.framework
+          xcodebuild -create-xcframework -archive lld-macos-arm/liblldMinGW.xcframework -archive lld-macos-x86/liblldMinGW.xcframework -framework LlldMinGW.framework
+          zip -r liblldWasm.zip LldWasm.framework
+          zip -r liblldCOFF.zip LldCOFF.framework
+          zip -r liblldMachO.zip LldMachO.framework
+          zip -r liblldELF.zip LldELF.framework
+          zip -r liblldMinGW.zip LldMinGW.framework
       - name: Test
         run: |
           ls 
